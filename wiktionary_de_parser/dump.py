@@ -16,7 +16,7 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
-from typing import Iterator
+from typing import Iterator, overload
 
 import requests
 from lxml import etree
@@ -109,6 +109,14 @@ def _process_page_element(page_element) -> WiktionaryPage | None:
 
 class WiktionaryDump:
     """Locate / download a Wiktionary dump and iterate its pages."""
+
+    @overload
+    def __init__(
+        self, dump_dir_path: Path | str, dump_download_url: str = ...
+    ): ...
+
+    @overload
+    def __init__(self, dump_file_path: Path | str): ...
 
     def __init__(
         self,
