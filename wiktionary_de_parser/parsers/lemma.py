@@ -144,5 +144,6 @@ def parse(entry: WiktionaryEntry) -> LemmaReference | None:
     # ref_type is always set whenever target is — they originate from the
     # same matched template — so guarding on target alone is sufficient.
     if target:
+        assert ref_type
         return LemmaReference(target=target, type=ref_type)
     return None
